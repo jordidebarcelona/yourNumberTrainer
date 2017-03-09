@@ -1,0 +1,18 @@
+<div class="center-block">
+    <div *ngIf="state == 'preparingNumber'">
+        <p>Number of digits: <input type="number" [(ngModel)]="numberOfDigits"></p>
+        <p>You chosed: {{numberOfDigits}}</p>
+        <button class="btn btn-submit" (click)="generateNumber()">Generate number!!</button>
+    </div>
+
+    <div *ngIf="state == 'memorizingNumber'">
+        <h2>{{myNumber}}</h2>
+        <h3>{{memoTime}}</h3>
+        <timer (notifyTimerFinish)="timerFinished($event)"></timer>
+    </div>
+
+    <div *ngIf="state == 'guessingNumber'">
+        <p>Memorizing time: {{ticks}} seconds</p>
+        <p>The numer was: <input type="number" [(ngModel)]="guessedNumber"></p>
+
+    </div>
