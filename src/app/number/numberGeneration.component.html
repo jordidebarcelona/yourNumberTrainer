@@ -7,12 +7,19 @@
 
     <div *ngIf="state == 'memorizingNumber'">
         <h2>{{myNumber}}</h2>
-        <h3>{{memoTime}}</h3>
+        <!--<h3>{{memoTime}}</h3>-->
         <timer (notifyTimerFinish)="timerFinished($event)"></timer>
     </div>
 
     <div *ngIf="state == 'guessingNumber'">
-        <p>Memorizing time: {{ticks}} seconds</p>
+        <p>Memorizing time: {{memoTime}} seconds</p>
         <p>The numer was: <input type="number" [(ngModel)]="guessedNumber"></p>
+        <button class="btn btn-danger" (click)="checkNumber()">Check my guess</button>
+    </div>
 
+    <div *ngIf="state == 'showResult'">
+        <p>The number was: {{myNumber}}</p>
+        <p>Your guess was: {{guessedNumber}}</p>
+        <h3>{{message}}</h3>
+        <button class="btn-btn-submit" (click)=restart()>Give it another try!</button>
     </div>

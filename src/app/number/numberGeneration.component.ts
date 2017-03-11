@@ -11,11 +11,14 @@ export class NumberGenerationComponent {
     guessedNumber: number = 0;
     numberOfDigits: number = 20;
     memoTime: number = 0;
+    message: string ="";
     states: string[] = [
         'preparingNumber',
         'memorizingNumber',
-        'guessingNumber'
+        'guessingNumber',
+        'showResult'
     ];
+
 
     state: string = this.states[0];
 
@@ -32,6 +35,21 @@ export class NumberGenerationComponent {
         }
 
         return n;
+    }
+
+    checkNumber(): void {
+        if(this.guessedNumber == (+this.myNumber))
+            this.message = "You are great man!!";
+        else
+            this.message = "This is not the original number. Keep practicing budy, and you'll become a real genius";
+
+        this.state = this.states[3];
+    }
+
+    restart(): void {
+        this.state = this.states[0];
+        this.guessedNumber = 0;
+        this.myNumber = "";
     }
 
     timerFinished(ticks: number): void {
